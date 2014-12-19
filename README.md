@@ -26,6 +26,9 @@ var passport = require('passport');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 
+var socketioRedis = require("passport-socketio-redis");
+
+
 // When configure your session for express use options like this.
 app.use(session({
     secret:"secret key", // Keep your secret key
@@ -44,7 +47,7 @@ app.use(passport.session());
 // Initialize socket.io 
 var io = require("socket.io")(server);
 
-io.use(passportSocketIo.authorize({
+io.use(socketioRedis.authorize({
     passport:passport,
     cookieParser: cookieParser,
     key:         'connect.sid',       
