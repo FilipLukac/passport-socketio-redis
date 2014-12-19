@@ -74,7 +74,10 @@ function authorizeFail(data, message, error, accept)
 
 
 ### `cookieParser` [function] **required**:
-You have to provide your cookieParser from express: `express.cookieParser`
+You have to provide your cookieParser from [cookie-parser](https://github.com/expressjs/cookie-parser): `express.cookieParser`
+
+### `store` [function] **required**:
+You have to provide [connect-redis](https://www.npmjs.com/package/connect-redis) as a SessionStore
 
 ### `key` [string] **optional**:
 Defaults to `'connect.sid'`. But you're always better of to be sure and set your own key. Don't forget to also change it in your `express.session()`:
@@ -90,6 +93,7 @@ Defaults to `require('passport')`. If you want, you can provide your own instanc
 ## `socket.request.user` 
 This property is always available from inside a `io.on('connection')` handler. If the user is authorized via passport, you can access all the properties from there.
 for example:
+
 ```javascript
 io.on('connection', function(socket){
     console.log(socket.request.user);
