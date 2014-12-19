@@ -72,7 +72,6 @@ function authorizeFail(data, message, error, accept)
 
 ## passport-socketio-redis - Options
 
-```
 
 ### `cookieParser` [function] **required**:
 You have to provide your cookieParser from express: `express.cookieParser`
@@ -87,9 +86,6 @@ As with `key`, also the secret you provide is optional. *But:* be sure to have o
 
 ### `passport` [function] **optional**:
 Defaults to `require('passport')`. If you want, you can provide your own instance of passport for whatever reason.
-
-
-```
 
 ## `socket.request.user` 
 This property is always available from inside a `io.on('connection')` handler. If the user is authorized via passport, you can access all the properties from there.
