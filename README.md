@@ -1,6 +1,5 @@
 
 # passport-socketio-redis Library for socket.io 1.x and express.js 4.x
-# Library base on [passport.socketio](https://github.com/jfromaniello/passport.socketio)
 > Share user information from a [passport.js](http://passportjs.org) stored in [Connect-Redis](https://www.npmjs.com/package/connect-redis) with [socket.io](http://socket.io) connection.
 
 ## Installation
@@ -151,3 +150,5 @@ Nope, there's nothing to do on the server side. Just be sure that the cookies na
 ## License
 Licensed under the MIT-License.
 2012-2015 Filip Lukac.
+
+## Library base on [passport.socketio](https://github.com/jfromaniello/passport.socketio)
