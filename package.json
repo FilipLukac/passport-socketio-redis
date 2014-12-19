@@ -1,0 +1,35 @@
+{
+  "name": "passport.socketio",
+  "version": "1.0.0",
+  "description": "passport.js authenticate socket.io with RedisStore using express.js",
+  "main": "lib/index.js",
+  "keywords": [
+    "socket",
+    "socket.io",
+    "passport",
+    "redis",
+    "RedisStore"
+  ],
+  "author": {
+    "name": "Filip Lukac",
+    "email": "filip.lukac@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chipsi/passport-socketio-redis.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "passport": "~0.2.0",
+    "xtend": "~2.0.3"
+  },
+  "devDependencies": {
+    "request": "~2.19.0",
+    "should": "~1.2.2",
+    "mocha": "~1.9.0",
+    "express": "~3.1.2",
+    "socket.io": "~1.1.0",
+    "passport-local": "~0.1.6",
+    "xmlhttprequest": "~1.5.0",
+    "connect": "~2.7.11"
+  },
