@@ -85,7 +85,7 @@ Defaults to `'connect.sid'`. But you're always better of to be sure and set your
 
 ### `secret` [string] **optional**:
 As with `key`, also the secret you provide is optional. *But:* be sure to have one. That's always safer. You can set it like the key:
-`app.use.session({ secret: 'pinkie ate my cupcakes!' }));`
+`app.use(session({ secret: 'pinkie ate my cupcakes!' }));`
 
 ### `passport` [function] **optional**:
 Defaults to `require('passport')`. If you want, you can provide your own instance of passport for whatever reason.

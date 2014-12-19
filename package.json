@@ -1,6 +1,6 @@
 {
   "name": "passport-socketio-redis",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "passport.js authenticate socket.io with RedisStore using express.js",
   "main": "lib/index.js",
   "keywords": [
