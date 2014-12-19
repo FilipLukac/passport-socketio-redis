@@ -23,6 +23,8 @@ var server = app.listen(config.httpOptions.port, function(){
 var cookieParser = require('cookie-parser');
 var redis = require("redis").createClient();
 var passport = require('passport');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 
 // When configure your session for express use options like this.
 app.use(session({
@@ -41,10 +43,6 @@ app.use(passport.session());
 
 // Initialize socket.io 
 var io = require("socket.io")(server);
-var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
-
-
 
 io.use(passportSocketIo.authorize({
     passport:passport,
