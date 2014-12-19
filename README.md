@@ -1,5 +1,6 @@
-# passport-socket-io
-> Access [passport.js](http://passportjs.org) user information from a [Connect-Redis](https://www.npmjs.com/package/connect-redis) with [socket.io](http://socket.io) connection.
+
+# passport-socketio-redis Library for socket.io 1.x and express.js 4.x
+> Share user information from a [passport.js](http://passportjs.org) stored in [Connect-Redis](https://www.npmjs.com/package/connect-redis) with [socket.io](http://socket.io) connection.
 
 
 ## Installation
@@ -20,7 +21,9 @@ var app = express();
 var server = app.listen(config.httpOptions.port, function(){
     console.log('Server is listnening on port %d', server.address().port);
 });
+var cookieParser = require('cookie-parser');
 var redis = require("redis").createClient();
+var passport = require('passport');
 
 // When configure your session for express use options like this.
 app.use(session({
@@ -42,7 +45,6 @@ var io = require("socket.io")(server);
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 
-// When 
 
 
 io.use(passportSocketIo.authorize({
@@ -51,72 +53,24 @@ io.use(passportSocketIo.authorize({
     key:         'connect.sid',       
     secret:      'Lebq8zzuQe3MS9H',    // the session_secret to parse the cookie
     store:       new RedisStore({ host: 'localhost', port: 6379, client: redis }),
-    success:     onAuthorizeSuccess,  // *optional* callback on success - read more below
+    success:     authorizeSuccess,  // *optional* callback on success - read more below
     fail:        onAuthorizeFail     // *optional* callback on fail/error - read more below
 }));
 
 function onAuthorizeSuccess(data, accept){
-  console.log('successful connection to socket.io');
-
-  // The accept-callback still allows us to decide whether to
-  // accept the connection or not.
-  accept(null, true);
-
-  // OR
-
-  // If you use socket.io@1.X the callback looks different
-  accept();
+    console.log('Authorized success');
+    accept();
 }
 
 function onAuthorizeFail(data, message, error, accept){
-  if(error)
-    throw new Error(message);
-  console.log('failed connection to socket.io:', message);
 
-  // We use this callback to log all of our failed connections.
-  accept(null, false);
+    f(error)
+        accept(new Error(message));
 
-  // OR
-
-  // If you use socket.io@1.X the callback looks different
-  // If you don't want to accept the connection
-  if(error)
-    accept(new Error(message));
-  // this error will be sent to the user as a special error-package
-  // see: http://socket.io/docs/client-api/#socket > error-object
 }
 ```
 
-## passport.socketio - Options
-
-### `store` [function] **required**:
-*Always* provide one. If you don't know what sessionStore to use, have a look at [this list](https://github.com/senchalabs/connect/wiki#session-stores).
-Also be sure to use the same sessionStore or at least a connection to *the same collection/table/whatever*. And don't forget your `express.session()` middleware:
-`app.use(express.session({ store: awesomeSessionStore }));`
-For further info about this middleware see [the official documentation](http://www.senchalabs.org/connect/session.html#session).
-
-You can also check the simple example below using a redis store.
-
-```javascript
-//in your app.js
-var sessionStore = new redisStore();
-
-app.use(session({
-  key: 'express.sid',
-  store: sessionStore,
-  secret: 'keyboard cat'
-}));
-
-//in your passport.socketio setup
-//With Socket.io >= 1.0 (you will have the same setup for Socket.io <1)
-io.use(passportSocketIo.authorize({
-  cookieParser: cookieParser,
-  key:         'express.sid',       //make sure is the same as in your session settings in app.js
-  secret:      'keyboard cat',    //make sure is the same as in your session settings in app.js
-  store:       sessionStore,        //you need to use the same sessionStore you defined in the app.use(session({... in app.js
-  success:     onAuthorizeSuccess,  // *optional* callback on success
-  fail:        onAuthorizeFail,     // *optional* callback on fail/error
-}));
+## passport-socketio-redis - Options
 
 ```
 
