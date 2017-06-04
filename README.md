@@ -1,3 +1,5 @@
+## Deprecated package - Not in development.
+
 
 # passport-socketio-redis Library for socket.io 1.x and express.js 4.x
 > Share user information from a [passport.js](http://passportjs.org) stored in [Connect-Redis](https://www.npmjs.com/package/connect-redis) with [socket.io](http://socket.io) connection.
